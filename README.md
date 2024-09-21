@@ -154,6 +154,20 @@ do
     })
 
 
+        DropdownPlayer:OnChanged(function(ValueSelectPlayer)
+        SelectPlayer = ValueSelectPlayer
+    end)
+
+    Tabs.Main:AddButton({
+        Title = "Reset Player",
+        Description = "Very important button",
+        Callback = function()
+            DropdownPlayer:SetValue(players)
+        end
+    })
+
+
+
 
 end
 
