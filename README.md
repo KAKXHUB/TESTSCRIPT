@@ -268,7 +268,7 @@ do
         end
     end);
 
-------------------------------------
+
 
     local Section = Tabs.Start:AddSection("Drink")
 
@@ -336,7 +336,7 @@ do
         end
     end);
 
-    -------------------------------
+
 
     local Section = Tabs.Playerss:AddSection("Setting Taget")
 
