@@ -14,10 +14,10 @@ local Window = Fluent:CreateWindow({
 
 local Tabs = {
     Main = Window:AddTab({ Title = "Main", Icon = "gem" }),
-    Settings = Window:AddTab({ Title = "Settings", Icon = "settings" }),
-    Quest = Window:AddTab({ Title = "Quest", Icon = "briefcase-business" }),
-    Start = Window:AddTab({ Title = "Start", Icon = "chart-bar" }),
-    Playerss = Window:AddTab({ Title = "Players", Icon = "users" })
+    Quest = Window:AddTab({ Title = "Quest", Icon = "clipboard" }),
+    Start = Window:AddTab({ Title = "Stats", Icon = "chart-column" }),
+    Playerss = Window:AddTab({ Title = "Players", Icon = "users" }),
+    Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 }
 
 local Cache = { DevConfig = {} };
@@ -123,6 +123,36 @@ do
 
 
     local Section = Tabs.Main:AddSection("Player2")
+
+
+        Tabs.Main:AddButton({
+        Title = "Save Zone",
+        Description = "Very important button",
+        Callback = function()
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(100000, 3500, 80000));
+            local Base = Instance.new("Part", game.Workspace);
+            Base.Size = Vector3.new(50, 1, 50);
+            Base.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame + Vector3.new(0, -3, 0);
+            Base.Anchored = true;
+        end
+    })
+
+
+    players = {}
+
+    for i,v in pairs(game:GetService("Players"):GetChildren()) do
+
+    table.insert(players,v.Name)
+
+    end
+    
+    local Dropdown = Tabs.Main:AddDropdown("DropdownPlayer", {
+        Title = "Select Players",
+        Values = players,
+        Multi = false,
+        Default = 1
+    })
+
 
 
 end
