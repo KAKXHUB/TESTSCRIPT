@@ -160,9 +160,9 @@ do
 
     Tabs.Main:AddButton({
         Title = "Reset Player",
-        Description = "Very important button",
+        Description = "Reset player list",
         Callback = function()
-            DropdownPlayer:SetValue(players)
+            Dropdown:SetValue(players)
         end
     })
 
