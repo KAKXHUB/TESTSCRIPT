@@ -21,7 +21,7 @@ local Options = Fluent.Options
 
 do
 
-    local Section = Tab:AddSection("Farm Beri")
+    local Section = Tabs.Main:AddSection("Farm Beri")
 
 
     Tabs.Main:AddParagraph({
