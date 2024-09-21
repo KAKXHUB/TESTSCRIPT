@@ -154,7 +154,7 @@ do
     })
 
 
-        DropdownPlayer:OnChanged(function(ValueSelectPlayer)
+        Dropdown:OnChanged(function(ValueSelectPlayer)
         SelectPlayer = ValueSelectPlayer
     end)
 
