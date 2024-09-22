@@ -290,14 +290,14 @@ do
         Finished = false
     })
 
-    print(InputDrink.Value)
+    print(Options.InputDrink.Value)
 
     Tabs.Start:AddButton({
         Title = "Buy Drink",
         Description = "Buy Drink",
         Callback = function()
-            if not InputDrink.Value or not string.match(InputDrink.Value, "%d+") or tonumber(string.match(InputDrink.Value, "%d+")) < 0 then return end;
-            for _ = 1, tonumber(string.match(InputDrink.Value, "%d+")) do
+            if not Options.InputDrink.Value or not string.match(Options.InputDrink.Value, "%d+") or tonumber(string.match(Options.InputDrink.Value, "%d+")) < 0 then return end;
+            for _ = 1, tonumber(string.match(Options.InputDrink.Value, "%d+")) do
                 game.Workspace.Merchants.BetterDrinkMerchant.Clickable.Retum:FireServer(Options.DropdownSelectDrink.Value)
             end
         end
