@@ -397,7 +397,7 @@ do
         Default = false
         Callback = function(state)
             if state then
-                game.Workspace.CurrentCamera.CameraSubject = Options.DropdownPlayerrr.Value.Character.Humanoid
+                game.Workspace.CurrentCamera.CameraSubject = game.Players[Options.DropdownPlayerrr.Value].Character.Humanoid;
             else
                 game.Workspace.CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character.Humanoid
             end
