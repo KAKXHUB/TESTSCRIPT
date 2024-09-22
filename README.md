@@ -388,6 +388,22 @@ do
         end
     })
 
+        local Toggle = Tabs.Playerss:AddToggle("MyToggleLTLPP", {Title = "Loop Teleport", Default = false })
+    local Toggle = Tabs.Playerss:AddToggle("MyToggleBPLY", {Title = "Bring Player", Default = false })
+    local Toggle = Tabs.Playerss:AddToggle("MyToggleVPRY", 
+    {
+        Title = "View Player", 
+        Description = "View Player",
+        Default = false
+        Callback = function(state)
+            if state then
+                game.Workspace.CurrentCamera.CameraSubject = [Options.DropdownPlayerrr.Value].Character.Humanoid
+            else
+                game.Workspace.CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character.Humanoid
+            end
+        end 
+    })
+
 
 
 
