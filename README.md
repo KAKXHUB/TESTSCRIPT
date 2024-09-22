@@ -20,7 +20,7 @@ local Tabs = {
 
 local Options = Fluent.Options
 
-do
+
     Fluent:Notify({
         Title = "Notification",
         Content = "This is a notification",
@@ -108,7 +108,7 @@ do
         Title = "Dropdown",
         Values = players,
         Multi = false,
-        Default = 1,
+        Default = 1
     })
 
 
@@ -233,7 +233,7 @@ do
     Input:OnChanged(function()
         print("Input updated:", Input.Value)
     end)
-end
+
 
 
 -- Addons:
