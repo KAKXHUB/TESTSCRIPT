@@ -94,12 +94,25 @@ do
 
 
 
+    local plrs = game.Players
+    local lp = plrs.LocalPlayer
+
+    local function updatePlayers(partition)
+        for _, plr in pairs(plrs:GetPlayers()) do
+            if plr ~= lp then
+                partition.new(plr.Name)
+            end
+        end
+    end
+
+
     local Dropdown = Tabs.Main:AddDropdown("Dropdown", {
         Title = "Dropdown",
-        Values = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen"},
+        Values = updatePlayers(Values)
         Multi = false,
         Default = 1,
     })
+
 
     Dropdown:SetValue("four")
 
