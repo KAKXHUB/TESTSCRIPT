@@ -378,6 +378,47 @@ do
         end
     })
 
+        local Section = Tabs.Playerss:AddSection("About Taget")
+
+    Tabs.Playerss:AddButton({
+        Title = "Teleport Player",
+        Description = "Teleport To Player",
+        Callback = function()
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[Options.DropdownPlayer.Value].Character.HumanoidRootPart.CFrame
+        end
+    })
+
+    local Toggle = Tabs.Playerss:AddToggle("MyToggleLTLPP", {Title = "Loop Teleport", Default = false })
+    local Toggle = Tabs.Playerss:AddToggle("MyToggleBPLY", {Title = "Bring Player", Default = false })
+    local Toggle = Tabs.Playerss:AddToggle("MyToggleVPRY", 
+    {
+        Title = "View Player", 
+        Description = "View Player",
+        Default = false
+        Callback = function(state)
+            if state then
+                game.Workspace.CurrentCamera.CameraSubject = [Options.DropdownPlayerrr.Value].Character.Humanoid
+            else
+                game.Workspace.CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character.Humanoid
+            end
+        end 
+    })
+
+
+    spawn(function()
+        while wait() do
+            pcall(function()
+                local Ply = Options.DropdownPlayerrr.Value
+                if Options.MyToggleBPLY.Value then
+                    Ply.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, 2) + game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.lookVector * DistancePlayer
+                end
+                if Options.MyToggleLTLPP.Valuet then
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =  Ply.Character.HumanoidRootPart.CFrame * CFrame.new(2, 0, 0) + Ply.Character.HumanoidRootPart.CFrame.lookVector * DistancePlayer
+                end
+            end)
+        end
+    end)
+
 
 
 
