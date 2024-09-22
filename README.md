@@ -284,11 +284,13 @@ do
 
     local Input = Tabs.Start:AddInput("InputDrink", {
         Title = "Amount Drink",
-        Default = "Default",
+        Default = 1,
         Placeholder = "Placeholder",
         Numeric = false, 
         Finished = false
     })
+
+    print(InputDrink.Value)
 
     Tabs.Start:AddButton({
         Title = "Buy Drink",
