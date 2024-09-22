@@ -15,7 +15,7 @@ local Window = Fluent:CreateWindow({
 local Tabs = {
     Main = Window:AddTab({ Title = "Main", Icon = "gem" }),
     Quest = Window:AddTab({ Title = "Quest", Icon = "clipboard" }),
-    Start = Window:AddTab({ Title = "Stats", Icon = "chart-column" }),
+    Start = Window:AddTab({ Title = "Stats", Icon = "route" }),
     Playerss = Window:AddTab({ Title = "Players", Icon = "users" }),
     Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 }
@@ -336,6 +336,90 @@ do
             end)
         end
     end);
+
+        local Section = Tabs.Playerss:AddSection("Setting Taget")
+
+    
+    local Dropdown = Tabs.Playerss:AddDropdown("DropdownPlayerrr", {
+        Title = "Select Players",
+        Values = players,
+        Multi = false,
+        Default = 1
+    })
+
+
+
+
+    Tabs.Playerss:AddButton({
+        Title = "Reset Player",
+        Description = "Reset Player List",
+        Callback = function()
+            players = {}
+
+            for i,v in pairs(game:GetService("Players"):GetChildren()) do
+        
+            table.insert(players,v.Name)
+        
+            end
+            Dropdown:SetValue(players)
+        end
+    })
+
+
+    local Slider = Tabs.Playerss:AddSlider("SliderDistancePlayer", {
+        Title = "Distance",
+        Description = "Distance between multiplier and monster",
+        Default = 6,
+        Min = -16,
+        Max = 16,
+        Rounding = 1,
+        Callback = function(ValueDistancePLY)
+            DistancePlayer = tonumber(ValueDistancePLY)
+        end
+    })
+
+
+
+    local Section = Tabs.Playerss:AddSection("About Taget")
+
+    Tabs.Playerss:AddButton({
+        Title = "Teleport Player",
+        Description = "Teleport To Player",
+        Callback = function()
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Options.DropdownPlayerrr.Value).Character.HumanoidRootPart.Position + Vector3.new(0, 5, 0));
+        end
+    })
+
+    local Toggle = Tabs.Playerss:AddToggle("MyToggleLTLPP", {Title = "Loop Teleport", Default = false })
+    local Toggle = Tabs.Playerss:AddToggle("MyToggleBPLY", {Title = "Bring Player", Default = false })
+    local Toggle = Tabs.Playerss:AddToggle("MyToggleVPRY", 
+    {
+        Title = "View Player", 
+        Description = "View Player",
+        Default = false
+        Callback = function(state)
+            if state then
+                game.Workspace.CurrentCamera.CameraSubject = Options.DropdownPlayerrr.Value.Character.Humanoid
+            else
+                game.Workspace.CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character.Humanoid
+            end
+        end 
+    })
+
+
+    spawn(function()
+        while wait() do
+            pcall(function()
+                local Ply = Options.DropdownPlayerrr.Value
+                if Options.MyToggleBPLY.Value then
+                    Ply.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, 2) + game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.lookVector * DistancePlayer
+                end
+                if Options.MyToggleLTLPP.Valuet then
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =  Ply.Character.HumanoidRootPart.CFrame * CFrame.new(2, 0, 0) + Ply.Character.HumanoidRootPart.CFrame.lookVector * DistancePlayer
+                end
+            end)
+        end
+    end)
 
 
 
