@@ -106,17 +106,11 @@ do
 
     local Dropdown = Tabs.Main:AddDropdown("Dropdown", {
         Title = "Dropdown",
-        Values = players
+        Values = players,
         Multi = false,
         Default = 1,
     })
 
-    
-    Dropdown:SetValue("four")
-
-    Dropdown:OnChanged(function(Value)
-        print("Dropdown changed:", Value)
-    end)
 
     Tabs.Main:AddButton({
         Title = "ButtonXXX",
