@@ -107,6 +107,15 @@ do
         print("Dropdown changed:", Value)
     end)
 
+        Tabs.Main:AddButton({
+        Title = "ButtonXXX",
+        Description = "Very important button",
+        Callback = function()
+            Dropdown:SetValue("Hee")
+        end
+    })
+
+
 
     
     local MultiDropdown = Tabs.Main:AddDropdown("MultiDropdown", {
