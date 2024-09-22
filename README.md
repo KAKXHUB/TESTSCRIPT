@@ -393,7 +393,6 @@ do
     local Toggle = Tabs.Playerss:AddToggle("MyToggleBPLY", {Title = "Bring Player", Default = false })
     local Toggle = Tabs.Playerss:AddToggle("MyToggleVPRY", {Title = "View Player",  Default = false })
 
-    spawn(function()
 
 spawn(function()
 
