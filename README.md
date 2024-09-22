@@ -178,6 +178,99 @@ do
         end
     })
 
+        local Section = Tabs.Quest:AddSection("Sam Quest")
+
+
+    local Toggle = Tabs.Quest:AddToggle("MyToggleASQ", {Title = "Auto Sam Quest", Default = false })
+    local Toggle = Tabs.Quest:AddToggle("MyToggleACQ", {Title = "Auto Compass Quest", Default = false })
+    local Toggle = Tabs.Quest:AddToggle("MyToggleAUB", {Title = "Auto Unbox Box", Default = false })
+    local Toggle = Tabs.Quest:AddToggle("MyToggleALTF", {Title = "Loot Fruit , Compass", Default = false })
+
+
+    spawn(function()
+        while wait() do
+            pcall(function()
+                if not Options.MyToggleASQ.Value then return end;
+                game.Workspace.Merchants.QuestMerchant.Clickable.Retum:FireServer("Claim1");
+            end)
+        end
+    end);
+
+    spawn(function()
+        while wait() do
+            pcall(function()
+                if not Options.MyToggleACQ.Value then return end;
+                local Compass = game.Players.LocalPlayer.Backpack:FindFirstChild("Compass");
+                local Compass2 = game.Players.LocalPlayer.Character:FindFirstChild("Compass");
+                if Compass or Compass2 then
+                    local OldPostiton = game.Players.LocalPlayer.Character.HumanoidRootPart.Position;
+                    game.Players.LocalPlayer.Character.Humanoid:UnequipTools();
+                    Compass.Parent = game.Players.LocalPlayer.Character;
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Compass.Poser.Value);
+                    Compass:Activate();
+                    wait(1);
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(OldPostiton);
+                end
+            end)
+        end
+    end);
+
+    spawn(function()
+        while wait() do
+            pcall(function()
+                if not Options.MyToggleAUB.Value then return end;
+                for _, Value in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+                    if table.find(Cache.DevConfig["ListOfBox"], Value.Name) then
+                        game.Players.LocalPlayer.Character.Humanoid:UnequipTools();
+                        Value.Parent = game.Players.LocalPlayer.Character;
+                        Value:Activate();
+                    end
+                end
+            end)
+        end
+    end);
+
+    spawn(function()
+        while wait() do
+            pcall(function()
+                if not Options.MyToggleALTF.Value then return end; 
+                    for i, v in pairs(game.Workspace.Trees.Tree.Model:GetChildren()) do
+                        if v.ClassName == "Tool" then
+                            fireclickdetector(v.Main.ClickDetector)
+                        end
+                    end
+                    for i, v in pairs(game.Workspace:GetChildren()) do
+                        if string.match(v.Name, "Box") and v:FindFirstChild("Handle") then
+                            v.Handle.CFrame = CFrame.new(game.Players.LocalPlayer.Character.HumanoidRootPart.Position)
+                        end
+                    end
+            end)
+        end
+    end);
+    
+    local Section = Tabs.Quest:AddSection("Auto Claim")
+
+    local Toggle = Tabs.Quest:AddToggle("MyToggleATCHR", {Title = "Auto Claim Hourly Reward", Default = false })
+    local Toggle = Tabs.Quest:AddToggle("MyToggleATCDRW", {Title = "Auto Claim Daily Reward", Default = false })
+
+
+    spawn(function()
+        while wait() do
+            pcall(function()
+                if not Options.MyToggleATCHR.Value then return end;
+                game.Workspace.UserData["User_" .. game.Players.LocalPlayer.UserId].ClaimRewardHourly:FireServer("RewardMark");
+            end)
+        end
+    end);
+    spawn(function()
+        while wait() do
+            pcall(function()
+                if not Options.MyToggleATCDRW.Value then return end;
+                game.Workspace.UserData["User_" .. game.Players.LocalPlayer.UserId].ClaimRewardDaily:FireServer("RewardMark");
+            end)
+        end
+    end);
+
 
 end
 
