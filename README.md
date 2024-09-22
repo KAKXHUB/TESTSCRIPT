@@ -403,7 +403,7 @@ if Options.MyToggleVPRY.Value then
 
 pcall(function()
 
-game.Workspace.CurrentCamera.CameraSubject = game.Players[Select].Character.Humanoid;
+game.Workspace.CurrentCamera.CameraSubject = game.Players[Options.DropdownPlayerrr.Value].Character.Humanoid;
 
 end)
 
