@@ -15,7 +15,7 @@ local Window = Fluent:CreateWindow({
 local Tabs = {
     Main = Window:AddTab({ Title = "Main", Icon = "gem" }),
     Quest = Window:AddTab({ Title = "Quest", Icon = "clipboard" }),
-    Start = Window:AddTab({ Title = "Stats", Icon = "route" }),
+    Start = Window:AddTab({ Title = "Stats", Icon = "chart-bar-increasing" }),
     Playerss = Window:AddTab({ Title = "Players", Icon = "users" }),
     Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 }
@@ -384,7 +384,7 @@ do
         Title = "Teleport Player",
         Description = "Teleport To Player",
         Callback = function()
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[Options.DropdownPlayer.Value].Character.HumanoidRootPart.CFrame
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[Options.DropdownPlayerrr.Value].Character.HumanoidRootPart.CFrame
         end
     })
 
