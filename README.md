@@ -108,10 +108,11 @@ do
 
     local Dropdown = Tabs.Main:AddDropdown("Dropdown", {
         Title = "Dropdown",
-        Values = updatePlayers(Values)
+        Values = updatePlayers()
         Multi = false,
         Default = 1,
     })
+
 
 
     Dropdown:SetValue("four")
