@@ -389,20 +389,47 @@ do
     })
 
 
-    local Toggle = Tabs.Playerss:AddToggle("MyToggleVPRY", 
-    {
-        Title = "View Player", 
-        Description = "View Player",
-        Default = false
-        Callback = function(state)
-            if state then
-                game.Workspace.CurrentCamera.CameraSubject = game.Players[Options.DropdownPlayerrr.Value].Character.Humanoid;
-            else
-                game.Workspace.CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character.Humanoid
-            end
-        end 
-    })
+    local Toggle = Tabs.Playerss:AddToggle("MyToggleLTLPP", {Title = "Loop Teleport", Default = false })
+    local Toggle = Tabs.Playerss:AddToggle("MyToggleBPLY", {Title = "Bring Player", Default = false })
+    local Toggle = Tabs.Playerss:AddToggle("MyToggleVPRY", {Title = "View Player",  Default = false })
 
+    spawn(function()
+
+spawn(function()
+
+while wait() do
+
+if Options.MyToggleVPRY.Value then
+
+pcall(function()
+
+game.Workspace.CurrentCamera.CameraSubject = game.Players[Select].Character.Humanoid;
+
+end)
+
+end
+
+end
+
+end)
+
+spawn(function()
+
+while wait() do
+    
+if not Options.MyToggleVPRY.Value then
+    
+pcall(function()
+    
+game.Workspace.CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character.Humanoid;
+    
+end)
+    
+end
+    
+end
+    
+end)
 
 
 
