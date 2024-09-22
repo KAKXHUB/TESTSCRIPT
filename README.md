@@ -271,6 +271,71 @@ do
         end
     end);
 
+        local Section = Tabs.Start:AddSection("Drink")
+
+    local Dropdown = Tabs.Start:AddDropdown("DropdownSelectDrink", {
+        Title = "Select Drink",
+        Values = Cache.DevConfig["ListOfDrink"],
+        Multi = false,
+        Default = 1
+    })
+
+
+
+    local Input = Tabs.Start:AddInput("InputDrink", {
+        Title = "Amount Drink",
+        Default = "Default",
+        Placeholder = "Placeholder",
+        Numeric = false, 
+        Finished = false
+    })
+
+    Tabs.Start:AddButton({
+        Title = "Buy Drink",
+        Description = "Buy Drink",
+        Callback = function()
+            if not InputDrink.Value or not string.match(InputDrink.Value, "%d+") or tonumber(string.match(InputDrink.Value, "%d+")) < 0 then return end;
+            for _ = 1, tonumber(string.match(InputDrink.Value, "%d+")) do
+                game.Workspace.Merchants.BetterDrinkMerchant.Clickable.Retum:FireServer(Options.DropdownSelectDrink.Value)
+            end
+        end
+    })
+
+    local Toggle = Tabs.Start:AddToggle("MyToggleATDWT", {Title = "Auto Drink", Default = false })
+
+    spawn(function()
+        while wait() do
+            pcall(function()
+                if not Options.MyToggleATDWT.Value then return end;
+                for _, Value in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+                    if table.find(Cache.DevConfig["ListOfDrink"], Value.Name) then
+                        game.Players.LocalPlayer.Character.Humanoid:UnequipTools();
+                        Value.Parent = game.Players.LocalPlayer.Character;
+                        Value:Activate();
+                    end
+                end
+            end)
+        end
+    end);
+
+    local Toggle = Tabs.Start:AddToggle("MyToggleATDDWT", {Title = "Auto Drop Drink", Default = false })
+
+    spawn(function()
+        while wait() do
+            pcall(function()
+                if not Options.MyToggleATDDWT.Value then return end;
+                for _, Value in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+                    if table.find(Cache.DevConfig["ListOfDrink"], Value.Name) then
+                        game.Players.LocalPlayer.Character.Humanoid:UnequipTools();
+                        Value.Parent = game.Players.LocalPlayer.Character;
+                        Value.Parent = game.Workspace;
+                    end
+                end
+            end)
+        end
+    end);
+
+
 
 end
 
