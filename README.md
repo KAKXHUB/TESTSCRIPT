@@ -154,15 +154,20 @@ do
     })
 
 
-    Dropdown:OnChanged(function(ValueSelectPlayer)
-        SelectPlayer = ValueSelectPlayer
-    end)
+
 
     Tabs.Main:AddButton({
         Title = "Reset Player",
         Description = "Reset player list",
         Callback = function()
-            Dropdown:SetValue(players)
+            players = {}
+
+            for i,v in pairs(game:GetService("Players"):GetChildren()) do
+        
+            table.insert(players,v.Name)
+        
+            end
+            DropdownPlayer:SetValue(players)
         end
     })
 
@@ -170,7 +175,8 @@ do
         Title = "Teleport Player",
         Description = "Teleport To Player",
         Callback = function()
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(SelectPlayer).Character.HumanoidRootPart.Position + Vector3.new(0, 5, 0));
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Options.DropdownPlayer.Value
+).Character.HumanoidRootPart.Position + Vector3.new(0, 5, 0));
         end
     })
 
