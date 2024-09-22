@@ -105,13 +105,17 @@ do
         end
     end
 
+    print(updatePlayers(partition))
+
 
     local Dropdown = Tabs.Main:AddDropdown("Dropdown", {
         Title = "Dropdown",
-        Values = updatePlayers()
+        Values = updatePlayers(partition)
         Multi = false,
         Default = 1,
     })
+
+    
 
 
 
