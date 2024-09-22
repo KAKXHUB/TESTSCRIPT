@@ -94,31 +94,24 @@ do
 
 
 
-    local plrs = game.Players
-    local lp = plrs.LocalPlayer
+    players = {}
 
-    local function updatePlayers(partition)
-        for _, plr in pairs(plrs:GetPlayers()) do
-            if plr ~= lp then
-                partition.new(plr.Name)
-            end
-        end
+    for i,v in pairs(game:GetService("Players"):GetChildren()) do
+    
+       table.insert(players,v.Name)
+    
     end
 
-    print(updatePlayers(partition))
 
 
     local Dropdown = Tabs.Main:AddDropdown("Dropdown", {
         Title = "Dropdown",
-        Values = updatePlayers(partition)
+        Values = players
         Multi = false,
         Default = 1,
     })
 
     
-
-
-
     Dropdown:SetValue("four")
 
     Dropdown:OnChanged(function(Value)
@@ -129,10 +122,10 @@ do
         Title = "ButtonXXX",
         Description = "Very important button",
         Callback = function()
-            print(Options.Dropdown.Value)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Options.Dropdown.Value).Character.HumanoidRootPart.Position + Vector3.new(0, 5, 0));
+
         end
     })
-
 
 
     
