@@ -162,13 +162,6 @@ do
         Title = "Reset Player",
         Description = "Reset player list",
         Callback = function()
-            players = {}
-
-            for i,v in pairs(game:GetService("Players"):GetChildren()) do
-        
-            table.insert(players,v.Name)
-        
-            end
             Dropdown:SetValue(players)
         end
     })
