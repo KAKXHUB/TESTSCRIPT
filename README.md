@@ -386,9 +386,10 @@ do
         Title = "Teleport Player",
         Description = "Teleport To Player",
         Callback = function()
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Options.DropdownPlayerrr.Value).Character.HumanoidRootPart.Position + Vector3.new(0, 5, 0));
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[Options.DropdownPlayer.Value].Character.HumanoidRootPart.CFrame
         end
     })
+
 
     local Toggle = Tabs.Playerss:AddToggle("MyToggleLTLPP", {Title = "Loop Teleport", Default = false })
     local Toggle = Tabs.Playerss:AddToggle("MyToggleBPLY", {Title = "Bring Player", Default = false })
