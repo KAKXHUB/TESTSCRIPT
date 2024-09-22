@@ -111,7 +111,7 @@ do
         Title = "ButtonXXX",
         Description = "Very important button",
         Callback = function()
-            Dropdown:SetValue("Hee")
+            Dropdown:SetValue("three")
         end
     })
 
