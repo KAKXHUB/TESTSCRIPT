@@ -388,8 +388,7 @@ do
         end
     })
 
-        local Toggle = Tabs.Playerss:AddToggle("MyToggleLTLPP", {Title = "Loop Teleport", Default = false })
-    local Toggle = Tabs.Playerss:AddToggle("MyToggleBPLY", {Title = "Bring Player", Default = false })
+
     local Toggle = Tabs.Playerss:AddToggle("MyToggleVPRY", 
     {
         Title = "View Player", 
