@@ -181,7 +181,7 @@ do
         end
     })
 
-
+--[[
     local Section = Tabs.Quest:AddSection("Sam Quest")
 
 
@@ -423,7 +423,7 @@ do
             end)
         end
     end)
-
+]]--
 end
 
 
