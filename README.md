@@ -107,11 +107,11 @@ do
         print("Dropdown changed:", Value)
     end)
 
-        Tabs.Main:AddButton({
+    Tabs.Main:AddButton({
         Title = "ButtonXXX",
         Description = "Very important button",
         Callback = function()
-            Dropdown:SetValue("three")
+            print(Options.Dropdown.Value)
         end
     })
 
