@@ -290,7 +290,7 @@ do
         Finished = false
     })
 
-    print(Options.InputDrink.Value)
+
 
     Tabs.Start:AddButton({
         Title = "Buy Drink",
