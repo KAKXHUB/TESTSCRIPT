@@ -15,7 +15,7 @@ local Window = Fluent:CreateWindow({
 local Tabs = {
     Main = Window:AddTab({ Title = "Main", Icon = "gem" }),
     Quest = Window:AddTab({ Title = "Quest", Icon = "clipboard" }),
-    Start = Window:AddTab({ Title = "Stats", Icon = "chart-bar-increasing" }),
+    Start = Window:AddTab({ Title = "Stats", Icon = "chart-pie" }),
     Playerss = Window:AddTab({ Title = "Players", Icon = "users" }),
     Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 }
@@ -397,7 +397,7 @@ do
         Default = false
         Callback = function(state)
             if state then
-                game.Workspace.CurrentCamera.CameraSubject = [Options.DropdownPlayerrr.Value].Character.Humanoid
+                game.Workspace.CurrentCamera.CameraSubject = Options.DropdownPlayerrr.Value.Character.Humanoid
             else
                 game.Workspace.CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character.Humanoid
             end
