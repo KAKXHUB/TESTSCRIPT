@@ -435,69 +435,7 @@ end
 end)
 
 
-    local Section = Tabs.Misc:AddSection("Spawn")
 
-    local Toggle = Tabs.Misc:AddToggle("MyToggleLATSPW", {Title = "Auto Respawn", Default = false })
-
-    spawn(function()
-        while wait() do
-            pcall(function()
-                if not Options.MyToggleLATSPW.Value or not game.Players.LocalPlayer.PlayerGui.Load.Frame.Visible then return end;
-                wait(3);
-                firesignal(game.Players.LocalPlayer.PlayerGui.Load.Frame.Load.MouseButton1Click);
-            end)
-        end
-    end);
-
-    local Section = Tabs.Misc:AddSection("Auto Attack")
-
-    local Toggle = Tabs.Misc:AddToggle("MyToggleATCOSK", {Title = "Click On Screen", Default = false })
-
-    spawn(function()
-        while wait() do
-            pcall(function()
-                if not Options.MyToggleATCOSK.Value then return end;
-                game:GetService("VirtualUser"):ClickButton1(Vector2.new(99999, 99999));
-            end)
-        end
-    end);
-
-    local Input = Tabs.Misc:AddInput("InputWeapon", {
-        Title = "Tools Name",
-        Default = "Default",
-        Placeholder = "Placeholder",
-        Numeric = false, -- Only allows numbers
-        Finished = false, -- Only calls callback when you press enter
-        Callback = function(Value)
-            for _, v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-                if v.ClassName == "Tool" and string.match(string.lower(v.Name), string.lower(tostring(Value))) then
-                    InputWeaponName = v.Name
-                end
-            end
-            for _, v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
-                if v.ClassName == "Tool" and string.match(string.lower(v.Name), string.lower(tostring(Value))) then
-                    InputWeaponName = v.Name
-                end
-            end
-        end
-    })
-
-    local Toggle = Tabs.Misc:AddToggle("MyToggleATRQ", {Title = "Auto Equip Tool", Default = false })
-    local Toggle = Tabs.Misc:AddToggle("MyToggleATATVT", {Title = "Auto Activate Tool", Default = false })
-
-
-    spawn(function()
-        while wait() do
-            pcall(function()
-                if Options.MyToggleATRQ.Valu and not game.Players.LocalPlayer.Character:FindFirstChild(InputWeaponName) then
-                    game.Players.LocalPlayer.Backpack:FindFirstChild(InputWeaponName).Parent = game.Players.LocalPlayer.Character
-                end
-                if Options.MyToggleATATVT.Valu and game.Players.LocalPlayer.Character:FindFirstChild(InputWeaponName) then
-                    game.Players.LocalPlayer.Character:FindFirstChild(InputWeaponNamee):Activate()
-                end
-            end)
-        end
-    end)
 
 
     local Section = Tabs.HunterX:AddSection("Setting HunterX)
