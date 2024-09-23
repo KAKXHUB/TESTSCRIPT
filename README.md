@@ -15,8 +15,12 @@ local Window = Fluent:CreateWindow({
 local Tabs = {
     Main = Window:AddTab({ Title = "Main", Icon = "gem" }),
     Quest = Window:AddTab({ Title = "Quest", Icon = "clipboard" }),
-    Start = Window:AddTab({ Title = "Stats", Icon = "chart-pie" }),
+    Start = Window:AddTab({ Title = "Stats", Icon = "list" }),
     Playerss = Window:AddTab({ Title = "Players", Icon = "users" }),
+    Misc = Window:AddTab({ Title = "Misc", Icon = "database" }),
+    Spam = Window:AddTab({ Title = "Spam", Icon = "locate" }),
+    HunterX = Window:AddTab({ Title = "HunterX", Icon = "unplug" }),
+    Dupe = Window:AddTab({ Title = "Dupe", Icon = "copy" }),
     Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 }
 
@@ -429,6 +433,154 @@ end
 end
     
 end)
+
+
+    local Section = Tabs.Misc:AddSection("Spawn")
+
+    local Toggle = Tabs.Misc:AddToggle("MyToggleLATSPW", {Title = "Auto Respawn", Default = false })
+
+    spawn(function()
+        while wait() do
+            pcall(function()
+                if not Options.MyToggleLATSPW.Value or not game.Players.LocalPlayer.PlayerGui.Load.Frame.Visible then return end;
+                wait(3);
+                firesignal(game.Players.LocalPlayer.PlayerGui.Load.Frame.Load.MouseButton1Click);
+            end)
+        end
+    end);
+
+    local Section = Tabs.Misc:AddSection("Auto Attack")
+
+    local Toggle = Tabs.Misc:AddToggle("MyToggleATCOSK", {Title = "Click On Screen", Default = false })
+
+    spawn(function()
+        while wait() do
+            pcall(function()
+                if not Options.MyToggleATCOSK.Value then return end;
+                game:GetService("VirtualUser"):ClickButton1(Vector2.new(99999, 99999));
+            end)
+        end
+    end);
+
+    local Input = Tabs.Misc:AddInput("InputWeapon", {
+        Title = "Tools Name",
+        Default = "Default",
+        Placeholder = "Placeholder",
+        Numeric = false, -- Only allows numbers
+        Finished = false, -- Only calls callback when you press enter
+        Callback = function(Value)
+            for _, v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+                if v.ClassName == "Tool" and string.match(string.lower(v.Name), string.lower(tostring(Value))) then
+                    InputWeaponName = v.Name
+                end
+            end
+            for _, v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                if v.ClassName == "Tool" and string.match(string.lower(v.Name), string.lower(tostring(Value))) then
+                    InputWeaponName = v.Name
+                end
+            end
+        end
+    })
+
+    local Toggle = Tabs.Misc:AddToggle("MyToggleATRQ", {Title = "Auto Equip Tool", Default = false })
+    local Toggle = Tabs.Misc:AddToggle("MyToggleATATVT", {Title = "Auto Activate Tool", Default = false })
+
+
+    spawn(function()
+        while wait() do
+            pcall(function()
+                if Options.MyToggleATRQ.Valu and not game.Players.LocalPlayer.Character:FindFirstChild(InputWeaponName) then
+                    game.Players.LocalPlayer.Backpack:FindFirstChild(InputWeaponName).Parent = game.Players.LocalPlayer.Character
+                end
+                if Options.MyToggleATATVT.Valu and game.Players.LocalPlayer.Character:FindFirstChild(InputWeaponName) then
+                    game.Players.LocalPlayer.Character:FindFirstChild(InputWeaponNamee):Activate()
+                end
+            end)
+        end
+    end)
+
+
+    local Section = Tabs.HunterX:AddSection("Setting HunterX)
+
+    local Input = Tabs.HunterX:AddInput("WebHookINPUT", {
+        Title = "WebHook",
+        Default = "",
+        Placeholder = "Placeholder",
+        Numeric = false, -- Only allows numbers
+        Finished = false, -- Only calls callback when you press enter
+        Callback = function(Value)
+            Webhookkkk = Value
+        end
+    })
+
+    local Input = Tabs.HunterX:AddInput("DelayHunterINPUT", {
+        Title = "Delay",
+        Default = 1,
+        Placeholder = "Placeholder",
+        Numeric = false, -- Only allows numbers
+        Finished = false, -- Only calls callback when you press enter
+        Callback = function(Value)
+            DalayHunterx = Value
+        end
+    })
+
+    local Toggle = Tabs.HunterX:AddToggle("MyToggleRareFurits", {Title = "RareFurits", Default = true })
+    local Toggle = Tabs.HunterX:AddToggle("MyToggleRareBoxxx", {Title = "RareBox", Default = true })
+    local Toggle = Tabs.HunterX:AddToggle("MyToggleAuraFuritsxx", {Title = "AuraFurits", Default = true })
+    local Toggle = Tabs.HunterX:AddToggle("MyToggleServerHopingxx", {Title = "ServerHoping", Default = true })
+    local Toggle = Tabs.HunterX:AddToggle("MyToggleEmergencyReJoinxx", {Title = "EmergencyReJoin", Default = true })
+
+    local Input = Tabs.HunterX:AddInput("EmergencyReJoinHunterINPUT", {
+        Title = "EmergencyReJoin",
+        Default = 40,
+        Placeholder = "Placeholder",
+        Numeric = false, -- Only allows numbers
+        Finished = false, -- Only calls callback when you press enter
+        Callback = function(Value)
+            EmergencyReJoinHunterxx = Value
+        end
+    })
+
+    local Input = Tabs.HunterX:AddInput("EmergencyReJoinTimeHunterINPUT", {
+        Title = "EmergencyReJoinTime",
+        Default = 5,
+        Placeholder = "Placeholder",
+        Numeric = false, -- Only allows numbers
+        Finished = false, -- Only calls callback when you press enter
+        Callback = function(Value)
+            EmergencyReJoinTimeHunterxx = Value
+        end
+    })
+
+    local Toggle = Tabs.HunterX:AddToggle("MyToggleFoundWillStop", {Title = "FoundWillStop", Default = true })
+
+
+    local Toggle = Tabs.HunterX:AddToggle("MyToggleStartHubterx", {Title = "Start", Default = false })
+
+    spawn(function()
+        while wait() do
+            pcall(function()
+                if not Options.MyToggleStartHubterx.Value then return end;
+                    Settings = {
+                        WebHook = Webhookkkk, -- <string> input your webhook.
+                        Delay = DalayHunterx, -- <number> delay when start.
+                        RareFurits = Options.MyToggleRareFurits.Value, -- <boolen> find rare,ultra furits.
+                        RareBox = Options.MyToggleRareBoxxx.Value, -- <boolen> find rare,ultra box.
+                        AuraFurits = Options.MyToggleAuraFuritsxx.Value, -- <boolen> find aura.
+                        ServerHoping = Options.MyToggleServerHopingxx.Value, -- <boolen> hoping.
+                        EmergencyReJoin = Options.MyToggleEmergencyReJoinxx.Value, -- <boolen> if not hoping in EmergencyReJoinTime will rejoin abruptly.
+                        EmergencyReJoinTime = EmergencyReJoinHunterxx, -- <number> time for EmergencyReJoin.
+                        NotSameServerListMax = EmergencyReJoinTimeHunterxx, -- <number> max list server.
+                        FoundWillStop = Options.MyToggleFoundWillStop.Value, -- <boolen> if found will stop rejoin.
+                        Title = "HunterX", -- <string> Title webhook.
+                        Color = "10694961", -- <string> color code for webhook get here https://www.spycolor.com/ .
+                        It_Is_Latest_Version = true --<boolen> if the script you are using did't Latest if notify you for updates. and you update at Hunter v1.
+                    }
+                    
+                    loadstring(game:HttpGet('https://raw.githubusercontent.com/KAKXHUB/HunterX-KAKxHub/main/README.md', true))()
+            end)
+        end
+    end);
 
 
 
