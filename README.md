@@ -228,42 +228,36 @@ do
         print("Input updated:", Input.Value)
     end)
 
-    local MyDropdown = Tabs.Main:AddDropdown("MyDropdown", {
-        Title = "My Dropdown",
-        Values = {"Option 1", "Option 2", "Option 3"},
-        Multi = false,
-        Default = 1,
-    })
+local MyDropdown = Tabs.Main:AddDropdown("MyDropdown", {
+    Title = "My Dropdown",
+    Values = {"Option 1", "Option 2", "Option 3"},
+    Multi = false,
+    Default = 1,
+})
+
+-- ฟังก์ชันเพื่ออัปเดตตัวเลือกใน Dropdown
+local function updateDropdownOptions()
+    local newOptions = {"New Option 1", "New Option 2", "New Option 3"}
     
-    -- ฟังก์ชันเพื่ออัปเดต Dropdown
-    local function updateDropdown()
-        -- บันทึกตำแหน่งและขนาดของ Dropdown เดิม
-        local position = MyDropdown.Position
-        local size = MyDropdown.Size
+    -- อัปเดตค่าใน Dropdown โดยใช้ SetValue (ถ้ามี)
+    MyDropdown:SetValue(newOptions[1]) -- ตั้งค่าเริ่มต้น
+    
+    -- หาก Fluent Library มีวิธีให้แก้ไขตัวเลือกใน Dropdown
+    -- อัปเดตตัวเลือกใน Dropdown
+    MyDropdown.Values = newOptions
+    -- หรือคุณอาจจะมีฟังก์ชันที่คล้ายกันเพื่อทำการอัปเดตค่า
+    
+    -- เรียกการอัปเดต UI ถ้าจำเป็น
+    MyDropdown:Refresh() -- หากมีฟังก์ชันสำหรับรีเฟรช UI
+end
 
-    -- ลบ Dropdown เดิม
-    MyDropdown:Destroy() 
-
-    -- สร้าง Dropdown ใหม่
-    MyDropdown = Tabs.Main:AddDropdown("MyDropdown", {
-        Title = "My Updated Dropdown",
-        Values = {"New Option 1", "New Option 2", "New Option 3"},
-        Multi = false,
-        Default = 1,
-    })
-
-    -- ตั้งค่าตำแหน่งและขนาดให้เหมือนเดิม
-    MyDropdown.Position = position
-    MyDropdown.Size = size
+-- ปุ่มสำหรับอัปเดต Dropdown
+Tabs.Main:AddButton({
+    Title = "Update Dropdown",
+    Callback = function()
+        updateDropdownOptions() -- เรียกฟังก์ชันเพื่ออัปเดตตัวเลือก
     end
-    
-    -- ปุ่มสำหรับอัปเดต Dropdown
-    Tabs.Main:AddButton({
-        Title = "Update Dropdown",
-        Callback = function()
-            updateDropdown() -- เรียกฟังก์ชันเพื่ออัปเดต Dropdown
-        end
-    })
+})
 
 end
 
