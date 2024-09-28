@@ -235,9 +235,11 @@ do
         Default = 1,
     })
     
+    -- ฟังก์ชันเพื่ออัปเดต Dropdown
     local function updateDropdown()
-    -- บันทึกตำแหน่งแบบ Absolute ของ Dropdown เดิม
-    local position = MyDropdown.AbsolutePosition
+        -- บันทึกตำแหน่งและขนาดของ Dropdown เดิม
+        local position = MyDropdown.Position
+        local size = MyDropdown.Size
 
     -- ลบ Dropdown เดิม
     MyDropdown:Destroy() 
@@ -250,10 +252,11 @@ do
         Default = 1,
     })
 
-    -- ตั้งค่าตำแหน่งแบบ Absolute
-    MyDropdown.Position = UDim2.new(0, position.X, 0, position.Y)
+    -- ตั้งค่าตำแหน่งและขนาดให้เหมือนเดิม
+    MyDropdown.Position = position
+    MyDropdown.Size = size
     end
-
+    
     -- ปุ่มสำหรับอัปเดต Dropdown
     Tabs.Main:AddButton({
         Title = "Update Dropdown",
