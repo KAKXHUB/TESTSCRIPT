@@ -228,26 +228,33 @@ do
         print("Input updated:", Input.Value)
     end)
 
-    local Dropdown = Tabs.Main:AddDropdown("Dropdown", {
-    Title = "Dropdown",
-    Values = {"one", "two", "three"},
-    Multi = false,
-    Default = 1,
+    local MyDropdown = Tabs.Main:AddDropdown("MyDropdown", {
+        Title = "My Dropdown",
+        Values = {"Option 1", "Option 2", "Option 3"},
+        Multi = false,
+        Default = 1,
     })
-
-    local function refreshDropdown()
-    local newValues = {"four", "five", "six"} -- ค่าที่อัปเดตใหม่
-    Dropdown:SetOptions(newValues) -- อัปเดตตัวเลือก
-    Dropdown:SetValue(newValues[1]) -- ตั้งค่าดีฟอลต์เป็นตัวแรกใน newValues
+    
+    -- ฟังก์ชันเพื่ออัปเดต Dropdown
+    local function updateDropdown()
+        -- ลบ Dropdown เดิม
+        MyDropdown:Destroy() 
+    
+        -- สร้าง Dropdown ใหม่
+        MyDropdown = Tabs.Main:AddDropdown("MyDropdown", {
+            Title = "My Updated Dropdown",
+            Values = {"New Option 1", "New Option 2", "New Option 3"},
+            Multi = false,
+            Default = 1,
+        })
     end
-
--- ปุ่มสำหรับรีเฟรช Dropdown
+    
+    -- ปุ่มสำหรับอัปเดต Dropdown
     Tabs.Main:AddButton({
-    Title = "Refresh Dropdown",
-    Description = "Click to refresh the dropdown options",
-    Callback = function()
-        refreshDropdown()
-    end
+        Title = "Update Dropdown",
+        Callback = function()
+            updateDropdown() -- เรียกฟังก์ชันเพื่ออัปเดต Dropdown
+        end
     })
 
 end
