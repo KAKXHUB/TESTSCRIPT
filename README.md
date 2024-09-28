@@ -236,19 +236,27 @@ do
     })
     
     -- ฟังก์ชันเพื่ออัปเดต Dropdown
-    local function updateDropdown()
-        -- ลบ Dropdown เดิม
-        MyDropdown:Destroy() 
-    
-        -- สร้าง Dropdown ใหม่
-        MyDropdown = Tabs.Main:AddDropdown("MyDropdown", {
-            Title = "My Updated Dropdown",
-            Values = {"New Option 1", "New Option 2", "New Option 3"},
-            Multi = false,
-            Default = 1,
-        })
-    end
-    
+        local function updateDropdown()
+        -- บันทึกตำแหน่งและขนาดของ Dropdown เดิม
+        local position = MyDropdown.Position
+        local size = MyDropdown.Size
+
+    -- ลบ Dropdown เดิม
+    MyDropdown:Destroy() 
+
+    -- สร้าง Dropdown ใหม่ที่มีตำแหน่งและขนาดเดิม
+    MyDropdown = Tabs.Main:AddDropdown("MyDropdown", {
+        Title = "My Updated Dropdown",
+        Values = {"New Option 1", "New Option 2", "New Option 3"},
+        Multi = false,
+        Default = 1,
+    })
+
+    -- ตั้งค่าตำแหน่งและขนาด
+    MyDropdown.Position = position
+    MyDropdown.Size = size
+end
+
     -- ปุ่มสำหรับอัปเดต Dropdown
     Tabs.Main:AddButton({
         Title = "Update Dropdown",
