@@ -235,16 +235,14 @@ do
         Default = 1,
     })
     
-    -- ฟังก์ชันเพื่ออัปเดต Dropdown
-        local function updateDropdown()
-        -- บันทึกตำแหน่งและขนาดของ Dropdown เดิม
-        local position = MyDropdown.Position
-        local size = MyDropdown.Size
+    local function updateDropdown()
+    -- บันทึกตำแหน่งแบบ Absolute ของ Dropdown เดิม
+    local position = MyDropdown.AbsolutePosition
 
     -- ลบ Dropdown เดิม
     MyDropdown:Destroy() 
 
-    -- สร้าง Dropdown ใหม่ที่มีตำแหน่งและขนาดเดิม
+    -- สร้าง Dropdown ใหม่
     MyDropdown = Tabs.Main:AddDropdown("MyDropdown", {
         Title = "My Updated Dropdown",
         Values = {"New Option 1", "New Option 2", "New Option 3"},
@@ -252,10 +250,9 @@ do
         Default = 1,
     })
 
-    -- ตั้งค่าตำแหน่งและขนาด
-    MyDropdown.Position = position
-    MyDropdown.Size = size
-end
+    -- ตั้งค่าตำแหน่งแบบ Absolute
+    MyDropdown.Position = UDim2.new(0, position.X, 0, position.Y)
+    end
 
     -- ปุ่มสำหรับอัปเดต Dropdown
     Tabs.Main:AddButton({
