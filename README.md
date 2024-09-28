@@ -131,6 +131,14 @@ do
         print("Mutlidropdown changed:", table.concat(Values, ", "))
     end)
 
+        Tabs.Main:AddButton({
+        Title = "Button",
+        Description = "Very important button",
+        Callback = function()
+            Dropdown:SetValue("one")
+        end
+    })
+
 
 
     local Colorpicker = Tabs.Main:AddColorpicker("Colorpicker", {
