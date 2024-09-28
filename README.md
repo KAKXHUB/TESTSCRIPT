@@ -227,6 +227,29 @@ do
     Input:OnChanged(function()
         print("Input updated:", Input.Value)
     end)
+
+    local Dropdown = Tabs.Main:AddDropdown("Dropdown", {
+    Title = "Dropdown",
+    Values = {"one", "two", "three"},
+    Multi = false,
+    Default = 1,
+    })
+
+    local function refreshDropdown()
+    local newValues = {"four", "five", "six"} -- ค่าที่อัปเดตใหม่
+    Dropdown:SetOptions(newValues) -- อัปเดตตัวเลือก
+    Dropdown:SetValue(newValues[1]) -- ตั้งค่าดีฟอลต์เป็นตัวแรกใน newValues
+    end
+
+-- ปุ่มสำหรับรีเฟรช Dropdown
+    Tabs.Main:AddButton({
+    Title = "Refresh Dropdown",
+    Description = "Click to refresh the dropdown options",
+    Callback = function()
+        refreshDropdown()
+    end
+    })
+
 end
 
 
